@@ -14,16 +14,293 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audit_logs: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          entity_id: string | null
+          entity_table: string
+          id: string
+          new_value: Json | null
+          previous_value: Json | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_table: string
+          id?: string
+          new_value?: Json | null
+          previous_value?: Json | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_table?: string
+          id?: string
+          new_value?: Json | null
+          previous_value?: Json | null
+        }
+        Relationships: []
+      }
+      government_rates: {
+        Row: {
+          area_name: string | null
+          created_at: string
+          created_by: string | null
+          district: string
+          fiscal_year: string
+          id: string
+          land_category: string | null
+          municipality: string | null
+          province: string | null
+          rate_per_sq_m: number | null
+          rate_unit: string
+          source: string | null
+          updated_at: string
+          ward: string | null
+        }
+        Insert: {
+          area_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          district: string
+          fiscal_year: string
+          id?: string
+          land_category?: string | null
+          municipality?: string | null
+          province?: string | null
+          rate_per_sq_m?: number | null
+          rate_unit?: string
+          source?: string | null
+          updated_at?: string
+          ward?: string | null
+        }
+        Update: {
+          area_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          district?: string
+          fiscal_year?: string
+          id?: string
+          land_category?: string | null
+          municipality?: string | null
+          province?: string | null
+          rate_per_sq_m?: number | null
+          rate_unit?: string
+          source?: string | null
+          updated_at?: string
+          ward?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          nec_number: string | null
+          nec_obtained_year: number | null
+          onboarding_completed: boolean
+          organization: string | null
+          phone: string | null
+          updated_at: string
+          verification_note: string | null
+          verification_status: Database["public"]["Enums"]["verification_status"]
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          nec_number?: string | null
+          nec_obtained_year?: number | null
+          onboarding_completed?: boolean
+          organization?: string | null
+          phone?: string | null
+          updated_at?: string
+          verification_note?: string | null
+          verification_status?: Database["public"]["Enums"]["verification_status"]
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          nec_number?: string | null
+          nec_obtained_year?: number | null
+          onboarding_completed?: boolean
+          organization?: string | null
+          phone?: string | null
+          updated_at?: string
+          verification_note?: string | null
+          verification_status?: Database["public"]["Enums"]["verification_status"]
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          granted_by: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          granted_by?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          granted_by?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      valuation_records: {
+        Row: {
+          created_at: string
+          created_by: string
+          currency: string
+          district: string | null
+          estimated_value: number | null
+          geometry: Json | null
+          id: string
+          land_area_sq_m: number | null
+          latitude: number | null
+          locality: string | null
+          longitude: number | null
+          metadata: Json
+          municipality: string | null
+          plot_number: string | null
+          province: string | null
+          reference_code: string | null
+          status: Database["public"]["Enums"]["record_status"]
+          title: string
+          updated_at: string
+          valuation_date: string | null
+          visibility: Database["public"]["Enums"]["record_visibility"]
+          ward: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          currency?: string
+          district?: string | null
+          estimated_value?: number | null
+          geometry?: Json | null
+          id?: string
+          land_area_sq_m?: number | null
+          latitude?: number | null
+          locality?: string | null
+          longitude?: number | null
+          metadata?: Json
+          municipality?: string | null
+          plot_number?: string | null
+          province?: string | null
+          reference_code?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          title: string
+          updated_at?: string
+          valuation_date?: string | null
+          visibility?: Database["public"]["Enums"]["record_visibility"]
+          ward?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          currency?: string
+          district?: string | null
+          estimated_value?: number | null
+          geometry?: Json | null
+          id?: string
+          land_area_sq_m?: number | null
+          latitude?: number | null
+          locality?: string | null
+          longitude?: number | null
+          metadata?: Json
+          municipality?: string | null
+          plot_number?: string | null
+          province?: string | null
+          reference_code?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          title?: string
+          updated_at?: string
+          valuation_date?: string | null
+          visibility?: Database["public"]["Enums"]["record_visibility"]
+          ward?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      public_profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          full_name: string | null
+          id: string | null
+          organization: string | null
+          verification_status:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string | null
+          organization?: string | null
+          verification_status?:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string | null
+          organization?: string | null
+          verification_status?:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: never; Returns: boolean }
+      is_valuator: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "guest" | "registered_valuator" | "admin"
+      record_status: "draft" | "submitted" | "approved" | "archived"
+      record_visibility: "private" | "universal"
+      verification_status:
+        | "guest"
+        | "verification_pending"
+        | "verified_valuator"
+        | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +427,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["guest", "registered_valuator", "admin"],
+      record_status: ["draft", "submitted", "approved", "archived"],
+      record_visibility: ["private", "universal"],
+      verification_status: [
+        "guest",
+        "verification_pending",
+        "verified_valuator",
+        "admin",
+      ],
+    },
   },
 } as const
