@@ -4,7 +4,7 @@ import { primaryNav, secondaryNav } from "@/features/navigation/navigation";
 import type { NavItem } from "@/features/navigation/navigation";
 import { cn } from "@/lib/utils";
 
-function NavLink({ item, onNavigate }: { item: NavItem; onNavigate?: () => void }) {
+function NavLink({ item, onNavigate }: { item: NavItem; onNavigate?: (() => void) | undefined }) {
   const Icon = item.icon;
   return (
     <Link
@@ -29,7 +29,7 @@ export function SidebarNav({
   onNavigate,
 }: {
   isAdmin: boolean;
-  onNavigate?: () => void;
+  onNavigate?: (() => void) | undefined;
 }) {
   const visibleSecondary = secondaryNav.filter((item) => !item.adminOnly || isAdmin);
 
