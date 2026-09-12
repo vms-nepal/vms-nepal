@@ -172,9 +172,12 @@ export type Database = {
       }
       valuation_records: {
         Row: {
+          area_source: string
           created_at: string
           created_by: string
           currency: string
+          deleted_at: string | null
+          deleted_by: string | null
           district: string | null
           estimated_value: number | null
           geometry: Json | null
@@ -183,11 +186,15 @@ export type Database = {
           latitude: number | null
           locality: string | null
           longitude: number | null
+          market_rate_per_sq_m: number | null
           metadata: Json
           municipality: string | null
+          notes: string | null
           plot_number: string | null
+          property_type: string | null
           province: string | null
           reference_code: string | null
+          road_category: string | null
           status: Database["public"]["Enums"]["record_status"]
           title: string
           updated_at: string
@@ -196,9 +203,12 @@ export type Database = {
           ward: string | null
         }
         Insert: {
+          area_source?: string
           created_at?: string
           created_by: string
           currency?: string
+          deleted_at?: string | null
+          deleted_by?: string | null
           district?: string | null
           estimated_value?: number | null
           geometry?: Json | null
@@ -207,11 +217,15 @@ export type Database = {
           latitude?: number | null
           locality?: string | null
           longitude?: number | null
+          market_rate_per_sq_m?: number | null
           metadata?: Json
           municipality?: string | null
+          notes?: string | null
           plot_number?: string | null
+          property_type?: string | null
           province?: string | null
           reference_code?: string | null
+          road_category?: string | null
           status?: Database["public"]["Enums"]["record_status"]
           title: string
           updated_at?: string
@@ -220,9 +234,12 @@ export type Database = {
           ward?: string | null
         }
         Update: {
+          area_source?: string
           created_at?: string
           created_by?: string
           currency?: string
+          deleted_at?: string | null
+          deleted_by?: string | null
           district?: string | null
           estimated_value?: number | null
           geometry?: Json | null
@@ -231,11 +248,15 @@ export type Database = {
           latitude?: number | null
           locality?: string | null
           longitude?: number | null
+          market_rate_per_sq_m?: number | null
           metadata?: Json
           municipality?: string | null
+          notes?: string | null
           plot_number?: string | null
+          property_type?: string | null
           province?: string | null
           reference_code?: string | null
+          road_category?: string | null
           status?: Database["public"]["Enums"]["record_status"]
           title?: string
           updated_at?: string
