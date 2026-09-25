@@ -33,7 +33,7 @@ export function RecordFilterBar({ filters, onChange, districts }: Props) {
   ).length;
 
   return (
-    <div className="space-y-3">
+    <Collapsible className="space-y-3">
       <div className="flex gap-2">
         <div className="relative flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -45,14 +45,14 @@ export function RecordFilterBar({ filters, onChange, districts }: Props) {
             aria-label="Search records"
           />
         </div>
-        <Collapsible className="contents">
-          <CollapsibleTrigger asChild>
-            <Button variant="outline" className="h-11 shrink-0">
-              Filters{activeCount ? ` (${activeCount})` : ""}
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="col-span-full w-full">
-            <div className="mt-3 grid gap-4 rounded-lg border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-4">
+        <CollapsibleTrigger asChild>
+          <Button variant="outline" className="h-11 shrink-0">
+            Filters{activeCount ? ` (${activeCount})` : ""}
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <div className="grid gap-4 rounded-lg border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-4">
               <Field label="District">
                 <Select
                   value={filters.district ?? ANY}
