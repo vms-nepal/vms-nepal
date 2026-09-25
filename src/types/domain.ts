@@ -43,12 +43,20 @@ export interface ValuationRecord {
   ward: string | null;
   locality: string | null;
   plot_number: string | null;
+  property_type: string | null;
+  road_category: string | null;
   latitude: number | null;
   longitude: number | null;
+  geometry: unknown;
   land_area_sq_m: number | null;
+  area_source: string;
+  market_rate_per_sq_m: number | null;
   estimated_value: number | null;
   currency: string;
   valuation_date: string | null;
+  notes: string | null;
+  deleted_at: string | null;
+  deleted_by: string | null;
   created_at: string;
   updated_at: string;
 }
