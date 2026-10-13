@@ -222,7 +222,7 @@ function RecordDetail() {
           <CardHeader>
             <CardTitle className="text-base">Record information</CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap x-4 gap-y-4 text-sm">
+          <CardContent className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm">
             <Info label="Record ID" mono value={data.id} wide />
             <Info label="Location" value={formatLocation(data)} wide />
             <Info label="Plot number" value={data.plot_number ?? "—"} />
