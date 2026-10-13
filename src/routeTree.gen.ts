@@ -19,7 +19,6 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedGovernmentRatesRouteImport } from './routes/_authenticated/government-rates'
 import { Route as AuthenticatedMapRouteImport } from './routes/_authenticated/map'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
-import { Route as AuthenticatedRecordsRouteImport } from './routes/_authenticated/records'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 
 const IndexRoute = IndexRouteImport.update({
@@ -72,11 +71,6 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedRecordsRoute = AuthenticatedRecordsRouteImport.update({
-  id: '/records',
-  path: '/records',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -93,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/government-rates': typeof AuthenticatedGovernmentRatesRoute
   '/map': typeof AuthenticatedMapRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
-  '/records': typeof AuthenticatedRecordsRoute
   '/settings': typeof AuthenticatedSettingsRoute
 }
 export interface FileRoutesByTo {
@@ -106,7 +99,6 @@ export interface FileRoutesByTo {
   '/government-rates': typeof AuthenticatedGovernmentRatesRoute
   '/map': typeof AuthenticatedMapRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
-  '/records': typeof AuthenticatedRecordsRoute
   '/settings': typeof AuthenticatedSettingsRoute
 }
 export interface FileRoutesById {
@@ -121,7 +113,6 @@ export interface FileRoutesById {
   '/_authenticated/government-rates': typeof AuthenticatedGovernmentRatesRoute
   '/_authenticated/map': typeof AuthenticatedMapRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
-  '/_authenticated/records': typeof AuthenticatedRecordsRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
 }
 export interface FileRouteTypes {
@@ -136,7 +127,6 @@ export interface FileRouteTypes {
     | '/government-rates'
     | '/map'
     | '/onboarding'
-    | '/records'
     | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -149,7 +139,6 @@ export interface FileRouteTypes {
     | '/government-rates'
     | '/map'
     | '/onboarding'
-    | '/records'
     | '/settings'
   id:
     | '__root__'
@@ -163,7 +152,6 @@ export interface FileRouteTypes {
     | '/_authenticated/government-rates'
     | '/_authenticated/map'
     | '/_authenticated/onboarding'
-    | '/_authenticated/records'
     | '/_authenticated/settings'
   fileRoutesById: FileRoutesById
 }
@@ -245,13 +233,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/records': {
-      id: '/_authenticated/records'
-      path: '/records'
-      fullPath: '/records'
-      preLoaderRoute: typeof AuthenticatedRecordsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
@@ -270,7 +251,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedGovernmentRatesRoute: typeof AuthenticatedGovernmentRatesRoute
   AuthenticatedMapRoute: typeof AuthenticatedMapRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
-  AuthenticatedRecordsRoute: typeof AuthenticatedRecordsRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
 }
 
@@ -282,7 +262,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedGovernmentRatesRoute: AuthenticatedGovernmentRatesRoute,
   AuthenticatedMapRoute: AuthenticatedMapRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
-  AuthenticatedRecordsRoute: AuthenticatedRecordsRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
 }
 
