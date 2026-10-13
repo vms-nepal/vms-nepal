@@ -19,8 +19,9 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedGovernmentRatesRouteImport } from './routes/_authenticated/government-rates'
 import { Route as AuthenticatedMapRouteImport } from './routes/_authenticated/map'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
-import { Route as AuthenticatedRecordsRouteImport } from './routes/_authenticated/records'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedRecordsIndexRouteImport } from './routes/_authenticated/records.index'
+import { Route as AuthenticatedRecordsRecordIdRouteImport } from './routes/_authenticated/records.$recordId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -72,16 +73,23 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedRecordsRoute = AuthenticatedRecordsRouteImport.update({
-  id: '/records',
-  path: '/records',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRecordsIndexRoute =
+  AuthenticatedRecordsIndexRouteImport.update({
+    id: '/records/',
+    path: '/records/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedRecordsRecordIdRoute =
+  AuthenticatedRecordsRecordIdRouteImport.update({
+    id: '/records/$recordId',
+    path: '/records/$recordId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -93,8 +101,9 @@ export interface FileRoutesByFullPath {
   '/government-rates': typeof AuthenticatedGovernmentRatesRoute
   '/map': typeof AuthenticatedMapRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
-  '/records': typeof AuthenticatedRecordsRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/records/$recordId': typeof AuthenticatedRecordsRecordIdRoute
+  '/records/': typeof AuthenticatedRecordsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -106,8 +115,9 @@ export interface FileRoutesByTo {
   '/government-rates': typeof AuthenticatedGovernmentRatesRoute
   '/map': typeof AuthenticatedMapRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
-  '/records': typeof AuthenticatedRecordsRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/records/$recordId': typeof AuthenticatedRecordsRecordIdRoute
+  '/records': typeof AuthenticatedRecordsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -121,8 +131,9 @@ export interface FileRoutesById {
   '/_authenticated/government-rates': typeof AuthenticatedGovernmentRatesRoute
   '/_authenticated/map': typeof AuthenticatedMapRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
-  '/_authenticated/records': typeof AuthenticatedRecordsRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/records/$recordId': typeof AuthenticatedRecordsRecordIdRoute
+  '/_authenticated/records/': typeof AuthenticatedRecordsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -136,8 +147,9 @@ export interface FileRouteTypes {
     | '/government-rates'
     | '/map'
     | '/onboarding'
-    | '/records'
     | '/settings'
+    | '/records/$recordId'
+    | '/records/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -149,8 +161,9 @@ export interface FileRouteTypes {
     | '/government-rates'
     | '/map'
     | '/onboarding'
-    | '/records'
     | '/settings'
+    | '/records/$recordId'
+    | '/records'
   id:
     | '__root__'
     | '/'
@@ -163,8 +176,9 @@ export interface FileRouteTypes {
     | '/_authenticated/government-rates'
     | '/_authenticated/map'
     | '/_authenticated/onboarding'
-    | '/_authenticated/records'
     | '/_authenticated/settings'
+    | '/_authenticated/records/$recordId'
+    | '/_authenticated/records/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -245,18 +259,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/records': {
-      id: '/_authenticated/records'
-      path: '/records'
-      fullPath: '/records'
-      preLoaderRoute: typeof AuthenticatedRecordsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/records/': {
+      id: '/_authenticated/records/'
+      path: '/records'
+      fullPath: '/records/'
+      preLoaderRoute: typeof AuthenticatedRecordsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/records/$recordId': {
+      id: '/_authenticated/records/$recordId'
+      path: '/records/$recordId'
+      fullPath: '/records/$recordId'
+      preLoaderRoute: typeof AuthenticatedRecordsRecordIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
@@ -270,8 +291,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedGovernmentRatesRoute: typeof AuthenticatedGovernmentRatesRoute
   AuthenticatedMapRoute: typeof AuthenticatedMapRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
-  AuthenticatedRecordsRoute: typeof AuthenticatedRecordsRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedRecordsRecordIdRoute: typeof AuthenticatedRecordsRecordIdRoute
+  AuthenticatedRecordsIndexRoute: typeof AuthenticatedRecordsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -282,8 +304,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedGovernmentRatesRoute: AuthenticatedGovernmentRatesRoute,
   AuthenticatedMapRoute: AuthenticatedMapRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
-  AuthenticatedRecordsRoute: AuthenticatedRecordsRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedRecordsRecordIdRoute: AuthenticatedRecordsRecordIdRoute,
+  AuthenticatedRecordsIndexRoute: AuthenticatedRecordsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

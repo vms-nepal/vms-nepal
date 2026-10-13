@@ -1,32 +1,30 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Map } from "lucide-react";
+import { lazy, Suspense } from "react";
+import { ClientOnly, createFileRoute } from "@tanstack/react-router";
 
-import { PageHeader } from "@/components/layout/PageHeader";
-import { PhasePlaceholder } from "@/components/layout/PhasePlaceholder";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// The map library is browser-only, so it is loaded after hydration.
+const MapWorkspace = lazy(() => import("@/features/map/MapWorkspace"));
 
 export const Route = createFileRoute("/_authenticated/map")({
+  head: () => ({
+    meta: [
+      { title: "Map — VMS" },
+      { name: "description", content: "Interactive map of valuation records with measurement tools." },
+    ],
+  }),
   component: MapPage,
 });
 
 function MapPage() {
+  const fallback = <Skeleton className="h-full w-full rounded-none" />;
   return (
-    <div className="space-y-6">
-      <PageHeader
-        eyebrow="Geospatial"
-        title="Map"
-        description="Map-based browsing and pin creation for valuation records."
-      />
-      <PhasePlaceholder
-        icon={Map}
-        title="Map workspace"
-        description="Records already store coordinates and a geometry field, so parcel outlines and spatial queries can be added without changing the data model."
-        points={[
-          "Record pins with owner-aware visibility",
-          "Parcel geometry storage (GeoJSON today, PostGIS ready)",
-          "District, municipality and ward filters",
-          "Map logic kept separate from interface code",
-        ]}
-      />
+    <div className="-mx-4 -my-6 h-[calc(100dvh-4rem)] sm:-mx-6 sm:-my-8">
+      <ClientOnly fallback={fallback}>
+        <Suspense fallback={fallback}>
+          <MapWorkspace />
+        </Suspense>
+      </ClientOnly>
     </div>
   );
 }
