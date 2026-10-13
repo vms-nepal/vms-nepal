@@ -158,11 +158,9 @@ export function RecordFilterBar({ filters, onChange, districts }: Props) {
                   <X className="mr-1 size-4" /> Clear filters
                 </Button>
               </div>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
-      </div>
-    </div>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
   );
 }
 
