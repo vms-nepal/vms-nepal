@@ -7,16 +7,16 @@ const RECORD_COLUMNS =
 export type RecordScope = "all" | "mine" | "universal" | "deleted";
 
 export interface RecordFilters {
-  search?: string;
-  district?: string;
-  municipality?: string;
-  ward?: string;
-  propertyType?: string;
-  roadCategory?: string;
-  dateFrom?: string;
-  dateTo?: string;
-  rateMin?: number;
-  rateMax?: number;
+  search?: string | undefined;
+  district?: string | undefined;
+  municipality?: string | undefined;
+  ward?: string | undefined;
+  propertyType?: string | undefined;
+  roadCategory?: string | undefined;
+  dateFrom?: string | undefined;
+  dateTo?: string | undefined;
+  rateMin?: number | undefined;
+  rateMax?: number | undefined;
 }
 
 export interface RecordInput {

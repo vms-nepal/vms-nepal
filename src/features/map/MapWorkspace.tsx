@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import maplibregl from "maplibre-gl";
+import * as maplibregl from "maplibre-gl";
 import type { GeoJSONSource, Map as MlMap, MapMouseEvent, MapTouchEvent } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Link, useNavigate } from "@tanstack/react-router";
@@ -41,12 +41,15 @@ import type { ValuationRecord } from "@/types/domain";
 
 type Mode = "browse" | "pin" | "distance" | "area";
 
+type GeoJSONFeature = { type: "Feature"; properties: Record<string, unknown>; geometry: { type: string; coordinates: unknown } };
+type GeoJSONFC = { type: "FeatureCollection"; features: GeoJSONFeature[] };
+
 const MEASURE_SOURCE = "measure";
 const LONG_PRESS_MS = 550;
 
-function measureGeoJSON(points: LngLat[], mode: Mode): GeoJSON.FeatureCollection {
+function measureGeoJSON(points: LngLat[], mode: Mode): GeoJSONFC {
   const coords = points.map((p) => [p.lng, p.lat]);
-  const features: GeoJSON.Feature[] = coords.map((c) => ({
+  const features: GeoJSONFeature[] = coords.map((c) => ({
     type: "Feature",
     properties: {},
     geometry: { type: "Point", coordinates: c },
